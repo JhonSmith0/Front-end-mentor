@@ -1,0 +1,210 @@
+/* ------------------- */
+/* HEADER */
+/* ------------------- */
+
+.header {
+  display: flex;
+  align-items: center;
+
+  padding: 0 4.8rem;
+  gap: 6.4rem;
+  height: 8rem;
+}
+
+.logo-box {
+  padding-top: 0.8rem;
+}
+
+.menu {
+  position: relative;
+  z-index: 99999999;
+  display: none;
+}
+
+/* ------------------- */
+/* NAV */
+/* ------------------- */
+
+.nav {
+  justify-content: space-between;
+  flex: 1;
+}
+.nav-list {
+  gap: 4.2rem;
+}
+
+.nav-item-box {
+  position: relative;
+}
+
+.nav-item {
+  gap: 0.9rem;
+}
+
+/* ------------------- */
+/* FEATURE-BOX */
+/* ------------------- */
+
+.nav-item-box.open {
+  color: var(--accent-cl);
+}
+
+.down-icon {
+  transition: all 0.3s 0s;
+}
+
+.nav-item-box.open .down-icon {
+  transform: rotate(180deg);
+}
+
+.nav-item-box.open .feature-box {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.nav-item-box:nth-child(2) .feature-box {
+  right: -1.6rem;
+}
+
+.feature-box {
+  position: absolute;
+  right: 0;
+
+  margin-top: 1.6rem;
+  padding: 2.4rem 2.2rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+
+  border-radius: 1.6rem;
+  transition: all 0.25s 0s;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+
+.feature-box img {
+  width: 1.6rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+
+  line-height: 2;
+  color: var(--grey-cl);
+  font-size: 1.4rem;
+  white-space: nowrap;
+}
+
+.feature-item:active {
+  color: var(--accent-cl);
+}
+
+/* ------------------- */
+/* SIGN BOX */
+/* ------------------- */
+
+.sign-box {
+  align-self: start;
+  gap: 3.2rem;
+}
+
+.sign-item {
+  padding: 1em;
+}
+
+.register {
+  border-radius: 1.2rem;
+  border: solid 1px var(--grey-cl);
+}
+
+/* ------------------- */
+/* HERO SECTION */
+/* ------------------- */
+
+.hero-section {
+  padding-block: 3.2rem 6.4rem;
+}
+
+.conteiner {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: max-content;
+  margin-inline: auto;
+  padding-left: 4.8rem;
+
+  gap: 14rem;
+}
+
+.hero-text-box {
+  height: max-content;
+  align-self: end;
+}
+
+.hero-title {
+  color: var(--accent-cl);
+  font-size: 7.6rem;
+  width: 11ch;
+  margin-bottom: 4.8rem;
+}
+
+.hero-description {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  width: 45ch;
+}
+
+.btn {
+  background: var(--accent-cl);
+  margin-block: 3.2rem 9.6rem;
+
+  padding: 1.6rem 3.2rem;
+  font-weight: 700;
+  color: var(--main-cl);
+
+  display: inline-block;
+  border-radius: 1.2rem;
+  border: solid 1px var(--accent-cl);
+  transition: all 0.25s 0s;
+}
+
+.feature-in {
+  width: 100%;
+}
+
+.img {
+  height: 60rem;
+  aspect-ratio: 960/1280;
+
+  background-image: url("../images/image-hero-desktop.png");
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+/* ------------------- */
+/* ACTIVE STATES */
+/* ------------------- */
+
+.nav-item:active,
+.sign-item:active {
+  color: var(--accent-cl);
+}
+
+.register:active {
+  border-color: var(--accent-cl);
+}
+
+.btn:focus-visible {
+  outline: solid 3px var(--grey-cl);
+}
+
+.btn:active {
+  background: var(--main-cl);
+  color: var(--accent-cl);
+}

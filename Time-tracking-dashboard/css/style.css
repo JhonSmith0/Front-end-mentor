@@ -1,0 +1,265 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* -=-=-= */
+/* SYSTEM */
+/* 
+-----
+BORDER
+-----
+1.6REM
+
+
+*/
+/* -=-=-= */
+
+html {
+  font-size: 62.5%;
+
+  --Blue: hsl(246, 80%, 60%);
+
+  --Lightred: hsl(15, 100%, 70%); /*(work)*/
+  --Softblue: hsl(195, 74%, 62%); /*(play)*/
+  --Lightredstudy: hsl(348, 100%, 68%); /*(study)*/
+  --Limegreen: hsl(145, 58%, 55%); /*(exercise)*/
+  --Violet: hsl(264, 64%, 52%); /*(social)*/
+  --Softorange: hsl(43, 84%, 65%); /*(self  care)*/
+  --Verydarkblue: hsl(226, 43%, 10%);
+  --Darkblue: hsl(235, 46%, 20%);
+  --Desaturatedblue: hsl(235, 45%, 61%);
+  --PaleBlue: hsl(236, 100%, 87%);
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  width: 100%;
+  height: 100vh;
+
+  max-width: 1440px;
+  margin-inline: auto;
+
+  background: var(--Verydarkblue);
+
+  display: flex;
+  align-items: center;
+
+  padding-inline: 2.4rem;
+}
+
+.conteiner {
+  width: 100%;
+  max-width: 1100px;
+
+  margin-inline: auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(110px, auto);
+
+  gap: 2.4rem;
+}
+
+.profile {
+  grid-row: span 2;
+}
+
+.profile,
+.box {
+  border-radius: 1.6rem;
+}
+
+.box {
+  aspect-ratio: 1;
+}
+
+/* -=-=-= */
+/* PROFILE */
+/* -=-=-= */
+
+.profile {
+  display: flex;
+  flex-direction: column;
+
+  background: var(--Darkblue);
+}
+
+.profile-info {
+  background: var(--Blue);
+  flex: 40;
+
+  border-radius: inherit;
+  display: grid;
+  gap: 3.8rem;
+  align-content: start;
+  justify-content: center;
+
+  padding: 3.2rem;
+  padding-bottom: 2rem;
+}
+
+.profile-img {
+  border: solid 3px #fff;
+  border-radius: 50%;
+
+  height: 8rem;
+}
+.report-box {
+}
+.report {
+  color: var(--PaleBlue);
+  font-size: 1.6em;
+  opacity: 0.8;
+}
+.name {
+  font-weight: 300;
+  font-size: 3.8em;
+  color: #fff;
+}
+
+.profile-actions {
+  padding: 1.6rem 3.2rem;
+  flex: 20;
+}
+
+.actions-list {
+  list-style-type: none;
+  display: grid;
+  align-content: space-around;
+  height: 100%;
+}
+
+.action {
+  color: var(--Desaturatedblue);
+  font-size: 1.8em;
+
+  background: none;
+  border: none;
+}
+
+/* -=-=-= */
+/* BOX */
+/* -=-=-= */
+
+.box {
+  position: relative;
+  overflow: hidden;
+  padding-top: 5rem;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+
+  border-radius: inherit;
+  background: var(--Darkblue);
+  height: 100%;
+
+  padding: 2.4rem;
+  display: grid;
+  color: #fff;
+}
+
+.box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+.box-infos {
+  display: grid;
+  align-self: center;
+}
+
+.hrs {
+  font-size: 5.4em;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.previous-hrs-box {
+  color: var(--Desaturatedblue);
+  font-size: 1.8em;
+}
+/* -=-=-= */
+/* BOX ICONS */
+/* -=-=-= */
+
+.box::before {
+  content: "";
+  width: 100%;
+  height: 50%;
+
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+.box-icon {
+  position: absolute;
+  right: 10px;
+  top: -15px;
+  z-index: 0;
+}
+
+.work::before {
+  background: var(--Lightred);
+}
+.play::before {
+  background: var(--Softblue);
+}
+.study::before {
+  background: var(--Lightredstudy);
+}
+.exercise::before {
+  background: var(--Limegreen);
+}
+
+.exercise .box-icon {
+  top: 0;
+}
+
+.social::before {
+  background: var(--Violet);
+}
+.self-care::before {
+  background: var(--Softorange);
+}
+
+/* Active */
+.action,
+.content,
+.box-icon {
+  cursor: pointer;
+}
+
+.ellipsis-icon {
+  border-radius: 9999px;
+  padding: 1rem;
+}
+
+.ellipsis-icon:hover {
+  background: hsla(0, 0%, 100%, 0.05);
+}
+.ellipsis-icon:active {
+  background: hsla(0, 0%, 100%, 0.03);
+}
+
+.action:active {
+  color: #fff;
+}
+
+.content:active {
+  background: hsl(235, 46%, 35%);
+}
+
+.selected {
+  color: #fff;
+}

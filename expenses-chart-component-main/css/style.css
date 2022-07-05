@@ -1,0 +1,178 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans";
+  font-weight: 400;
+}
+
+html {
+  font-size: 80%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background: hsl(27, 66%, 92%);
+}
+
+.conteiner {
+  width: 30rem;
+}
+
+header {
+  background: hsl(10, 79%, 65%);
+  border-radius: 0.9rem;
+  padding: 0.8rem 1.6rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+header span {
+  display: block;
+  color: #fff;
+}
+
+header span:first-child {
+  margin-bottom: 0.2rem;
+}
+
+header .value {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.4rem;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+main {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 0.9rem;
+  padding: 1.2rem 1.6rem;
+  background: white;
+}
+
+h1 {
+  color: hsl(25, 47%, 15%);
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.bars {
+  display: flex;
+  gap: 1.2rem;
+  width: 100%;
+  height: 9.6rem;
+  text-align: center;
+  color: hsl(28, 10%, 53%);
+
+  margin-block: 4.2rem;
+}
+
+.bar-box {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.bar {
+  position: relative;
+  border-radius: 0.24rem;
+  background: hsl(10, 79%, 65%);
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+}
+
+.bar:hover {
+  background: hsl(28, 10%, 53%);
+}
+
+.resume {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resume h2 {
+  color: hsl(28, 10%, 53%);
+  font-size: 0.9rem;
+  margin-bottom: 0.45rem;
+}
+
+.resume .value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: hsl(25, 47%, 15%);
+}
+
+.infos-box {
+  text-align: right;
+  color: hsl(25, 47%, 15%);
+  font-weight: 700;
+}
+
+.last {
+  color: hsl(28, 10%, 53%);
+}
+
+.value-box {
+  background: hsl(25, 47%, 15%);
+  color: hsl(27, 66%, 92%);
+  padding: 0.25rem 0.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.15rem;
+  width: max-content;
+
+  font-weight: 700;
+
+  font-size: 1rem;
+
+  position: absolute;
+  top: -2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: all 0.3s 0s;
+}
+
+.bar-box.active .value-box {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.bar-box.active .bar {
+  background: hsl(186, 34%, 60%);
+}
+
+@media screen and (max-width: 404px) {
+  html {
+    font-size: 62.5%;
+  }
+}
