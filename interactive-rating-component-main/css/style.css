@@ -99,6 +99,11 @@ p {
   letter-spacing: 1px;
 }
 
+.submit:active {
+  background: white;
+  color: var(--Orange);
+}
+
 .active {
   background: var(--Orange);
   color: white;
@@ -106,4 +111,27 @@ p {
 
 button {
   cursor: pointer;
+}
+
+/*  */
+.card.sent {
+  text-align: center;
+}
+
+.infos {
+  background: hsl(213, 19%, 21%);
+  color: var(--Orange);
+
+  width: max-content;
+
+  padding: 0.8rem 1rem;
+
+  border-radius: 999px;
+  margin-inline: auto;
+
+  margin-block: 1.8rem;
+}
+
+.sent h1 {
+  margin-block: 1rem;
 }
