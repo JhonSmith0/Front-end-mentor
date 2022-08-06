@@ -10,6 +10,7 @@ export default function InfoLine(props: {
   return (
     <li
       className={`flex items-end 
+      whitespace-nowrap
       gap-2 ${liClassName}`}
     >
       <span className={`font-semibold ${labelClassName}`}>{label}:</span>

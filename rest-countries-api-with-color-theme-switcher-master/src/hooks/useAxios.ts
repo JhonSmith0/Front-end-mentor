@@ -7,7 +7,8 @@ export default function useAxios<T = unknown>(url: string, deps: any[] = []) {
   const [error, setError] = useState<Error>();
 
   useEffect(() => {
-    console.log("effect");
+    setError(undefined);
+
     if (!url) return;
     setIsFetching(true);
     axios

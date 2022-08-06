@@ -1,4 +1,4 @@
-import { SearchItem } from "../../App";
+import { SearchItem } from "../../interface";
 import CountryConteiner from "../CountryConteiner/CountryConteiner";
 import { searchIcon } from "../icons";
 
@@ -7,18 +7,19 @@ interface propsInt {
   className?: string;
   atributes?: object;
 
-  items: SearchItem[];
+  items: SearchItem[] | undefined;
   onClick?(item: SearchItem): any;
 }
 
 export default function CountryList(props: propsInt) {
-  const { children, className, atributes, items } = props;
+  const { children, className, atributes, items = [] } = props;
   return (
     <div
       className={`
     w-full
     h-max
-    p-[3.2rem]
+    py-[3.2rem]
+    md:px-[3.2rem]
 
 
 

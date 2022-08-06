@@ -5,28 +5,17 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import FilterConteiner from "./components/FilterConteiner/FilterConteiner";
 import CountryList from "./components/CountryList/CountryList";
 import CountryInfos from "./components/CountryInfos/CountryInfos";
+
 import useAxios from "./hooks/useAxios";
 import useSearch from "./hooks/useSearch";
+import { SearchItem } from "./interface";
 
-export interface SearchItem {
-  name: any;
-  capital: string;
-  population: number;
-  region: string;
-  alpha2Code?: string;
-  flags: {
-    png: string;
-    svg: string;
-  };
-}
+function filterRegions(lista: SearchItem[] = [], region: string) {
+  if (region.toLowerCase() === "all") return lista;
 
-export interface CountryInfosInterface extends SearchItem {
-  nativeName: string;
-  subregion: string;
-  tld?: string[];
-  currencies: { code: string; name: string; symbol: string }[];
-  languages: { name: string }[];
-  borders?: string[];
+  return lista?.filter(
+    (obj) => obj.region.toLowerCase() === region.toLowerCase()
+  );
 }
 
 function App() {
@@ -34,22 +23,35 @@ function App() {
     "countryInfos" | "countryList"
   >("countryList");
 
-  const [country, setCountry] = useState<SearchItem>();
+  const [countryCode, setCountryCode] = useState<any>();
 
   const [search, setSearch] = useState<string>("");
   const { data, isFetching, error } = useSearch(search, [search]);
+  const [filteredSearch, setFilteredSearch] = useState<SearchItem[]>();
 
   function onSubmit(input: string) {
     setSearch(input);
+    setFilteredSearch(undefined);
+  }
+
+  function filter(region: string) {
+    setFilteredSearch(filterRegions(data, region));
+  }
+
+  function countryClick(country: SearchItem) {
+    setCountryCode(country.alpha2Code);
+    setCurrentPage("countryInfos");
+  }
+
+  function onBack() {
+    setCurrentPage("countryList");
   }
 
   return (
     <>
-      {/* <button onClick={() => setSearch("china")}>China</button> */}
       <PageHeader>Where in the world?</PageHeader>
       <main
-        className="py-[2.8rem] px-10 h-full
-        overflow-x-hidden     
+        className="py-[2.8rem] px-12 h-full
         relative 
 
       "
@@ -57,23 +59,23 @@ function App() {
         {currentPage === "countryList" ? (
           <>
             <SearchBar onSubmit={onSubmit} />
-            <FilterConteiner />
+            <FilterConteiner onClick={filter} />
 
-            {isFetching || (
-              <CountryList
-                items={data ?? []}
-                onClick={(e) => {
-                  setCurrentPage("countryInfos");
-                  setCountry(e);
-                }}
-              />
+            {error ? (
+              <h1 className="mx-auto mt-10 text-white font-bold uppercase w-max p-5 lg-font">
+                {error.message}!
+              </h1>
+            ) : (
+              isFetching || (
+                <CountryList
+                  items={filteredSearch ?? data}
+                  onClick={countryClick}
+                />
+              )
             )}
           </>
         ) : (
-          <CountryInfos
-            countryCode={country?.alpha2Code}
-            onBack={setCurrentPage.bind(null, "countryList")}
-          />
+          <CountryInfos countryCode={countryCode} onBack={onBack} />
         )}
       </main>
     </>

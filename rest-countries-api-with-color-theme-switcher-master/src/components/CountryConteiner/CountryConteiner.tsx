@@ -1,4 +1,4 @@
-import { SearchItem } from "../../App";
+import { SearchItem } from "../../interface";
 import { searchIcon } from "../icons";
 import InfosLine from "../InfosList/InfosLine";
 
@@ -16,17 +16,13 @@ export const formatter = Intl.NumberFormat(window.navigator.language);
 export default function CountryConteiner(props: propsInt) {
   const { children, className, atributes, searchItem, onClick } = props;
 
-  function getName(): string {
-    return searchItem.name ?? "";
-  }
-
   return (
     <div
       className="
     country-conteiner
-    w-max
-    h-max
+    w-full
     max-w-[320px]
+    h-max
     rounded-[5px]
     overflow-hidden
     panel-color
