@@ -5,7 +5,7 @@ export interface SearchItem {
   capital: string;
   population: number;
   region: string;
-  alpha2Code?: string;
+  alpha2Code: string;
   flags: {
     png: string;
     svg: string;
@@ -32,17 +32,20 @@ export interface CountryInfosInterface {
 }
 
 export interface RootContextInterface {
+  countryCode?: string;
+
   searchQuery?: string;
-  searchItems?: SearchItem[];
-  filteredSearch?: SearchItem[];
   filterQuery?: string;
-  currentCountryObject?: CountryInfosModel;
-  curretCountryCode?: string;
+
   page?: "list" | "infos";
-  search?(searchQuery: string): any;
-  filter?(searchQuery: string): any;
-  open?(countryCode: string): any;
-  goBack?(): any;
+
+  countryList?: SearchItem[];
+  countryInfos?: CountryInfosInterface;
+
+  search?(query: string): any;
+  filter?(query: string): any;
+  showCountryList?(): any;
+  showCountryInfos?(countryCode: string): any;
 }
 
 export interface DispatcherAction {

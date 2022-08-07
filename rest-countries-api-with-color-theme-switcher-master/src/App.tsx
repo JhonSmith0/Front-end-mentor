@@ -5,10 +5,8 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import FilterConteiner from "./components/FilterConteiner/FilterConteiner";
 import CountryList from "./components/CountryList/CountryList";
 import CountryInfos from "./components/CountryInfos/CountryInfos";
-
-import useAxios from "./hooks/useAxios";
-import useSearch from "./hooks/useSearch";
 import { SearchItem } from "./interface";
+import useRootContext from "./data/hooks/useRootContext";
 
 function filterRegions(lista: SearchItem[] = [], region: string) {
   if (region.toLowerCase() === "all") return lista;
@@ -19,63 +17,37 @@ function filterRegions(lista: SearchItem[] = [], region: string) {
 }
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<
-    "countryInfos" | "countryList"
-  >("countryList");
-
-  const [countryCode, setCountryCode] = useState<any>();
-
-  const [search, setSearch] = useState<string>("");
-  const { data, isFetching, error } = useSearch(search, [search]);
-  const [filteredSearch, setFilteredSearch] = useState<SearchItem[]>();
-
-  function onSubmit(input: string) {
-    setSearch(input);
-    setFilteredSearch(undefined);
-  }
-
-  function filter(region: string) {
-    setFilteredSearch(filterRegions(data, region));
-  }
-
-  function countryClick(country: SearchItem) {
-    setCountryCode(country.alpha2Code);
-    setCurrentPage("countryInfos");
-  }
-
-  function onBack() {
-    setCurrentPage("countryList");
-  }
+  const { page } = useRootContext();
 
   return (
     <>
       <PageHeader>Where in the world?</PageHeader>
       <main
-        className="py-[2.8rem] px-12 h-full
-        relative 
-
+        className="py-[2.8rem] px-12 h-full relative
+      
+      md:px-[50px]
+      
       "
       >
-        {currentPage === "countryList" ? (
+        {page === "list" ? (
           <>
-            <SearchBar onSubmit={onSubmit} />
-            <FilterConteiner onClick={filter} />
-
-            {error ? (
-              <h1 className="mx-auto mt-10 text-white font-bold uppercase w-max p-5 lg-font">
-                {error.message}!
-              </h1>
-            ) : (
-              isFetching || (
-                <CountryList
-                  items={filteredSearch ?? data}
-                  onClick={countryClick}
-                />
-              )
-            )}
+            <div
+              className="
+            flex
+            flex-col
+            md:flex-row
+            md:justify-between
+            md:items-center
+            gap-[32px]
+            "
+            >
+              <SearchBar />
+              <FilterConteiner />
+            </div>
+            <CountryList />
           </>
         ) : (
-          <CountryInfos countryCode={countryCode} onBack={onBack} />
+          <CountryInfos />
         )}
       </main>
     </>
@@ -83,3 +55,7 @@ function App() {
 }
 
 export default App;
+
+// <h1 className="mx-auto mt-10 text-white font-bold uppercase w-max p-5 lg-font">
+// {error.message}!
+// </h1>

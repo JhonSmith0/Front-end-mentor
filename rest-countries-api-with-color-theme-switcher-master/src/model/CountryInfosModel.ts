@@ -48,19 +48,19 @@ export default class CountryInfosModel {
   }
 
   get tld() {
-    return Object.values(this._tld)[0] ?? "";
+    return this._tld?.[0] ?? "";
   }
 
   get currencies() {
-    return Object.keys(this._currencies).join(" ");
+    return Object.keys(this._currencies ?? {}).join(" ");
   }
 
   get capital() {
-    return Object.values(this._capital).join(" ");
+    return this._capital?.join(" ") ?? "";
   }
 
   get languages() {
-    return Object.values(this._languages).join(" ");
+    return Object.values(this._languages ?? {}).join(" ");
   }
 
   async borders() {

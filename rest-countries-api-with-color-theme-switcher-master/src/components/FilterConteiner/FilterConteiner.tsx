@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useRootContext from "../../data/hooks/useRootContext";
 import { chevDown, chevUp, searchIcon } from "../icons";
 
 interface propsInt {
@@ -13,6 +14,7 @@ export default function FilterConteiner(props: propsInt) {
   const { children, className, atributes, onClick } = props;
 
   const [visible, setVisible] = useState(false);
+  const { filter, filterQuery } = useRootContext();
 
   function toggleVisible() {
     setVisible(!visible);
@@ -21,7 +23,6 @@ export default function FilterConteiner(props: propsInt) {
   return (
     <div
       className={`
-    mt-[3.2rem]
     max-w-[20rem]
     text-white
 
@@ -36,8 +37,12 @@ export default function FilterConteiner(props: propsInt) {
         panel-color
 
         py-[1.4rem]
-        pl-[2.8rem]
-        pr-[1.8rem]
+        px-[2.8rem]
+        gap-[1.4rem]
+
+        md:w-[200px]
+        md:px-[1.8rem]
+        
 
         rounded-[5px]
 
@@ -46,6 +51,8 @@ export default function FilterConteiner(props: propsInt) {
 
         justify-between
         cursor-pointer
+
+        shadow
         
         `}
         onClick={toggleVisible}
@@ -55,11 +62,13 @@ export default function FilterConteiner(props: propsInt) {
           className={`
         block
         leading-[1]
-
+capitalize
         
         `}
         >
-          Filter by Region
+          {!filterQuery || filterQuery === "all"
+            ? "Filter by Region"
+            : filterQuery}
         </span>
         <div
           className="
@@ -80,8 +89,8 @@ export default function FilterConteiner(props: propsInt) {
         py-[1.4rem]
         px-[2.8rem]
 
+        md:px-[1.8rem]
         mt-[5px]
-
         leading-[2]
         
         "
@@ -92,7 +101,7 @@ export default function FilterConteiner(props: propsInt) {
                 <li
                   key={e}
                   onClick={() => {
-                    onClick?.(e);
+                    filter?.(e.toLowerCase());
                     setVisible(!visible);
                   }}
                 >

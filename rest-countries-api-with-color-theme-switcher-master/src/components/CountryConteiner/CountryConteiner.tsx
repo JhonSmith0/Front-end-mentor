@@ -1,3 +1,4 @@
+import useRootContext from "../../data/hooks/useRootContext";
 import { SearchItem } from "../../interface";
 import { searchIcon } from "../icons";
 import InfosLine from "../InfosList/InfosLine";
@@ -6,15 +7,15 @@ interface propsInt {
   children?: any;
   className?: string;
   atributes?: object;
-
   searchItem: SearchItem;
-  onClick?(item: SearchItem): any;
 }
 
 export const formatter = Intl.NumberFormat(window.navigator.language);
 
 export default function CountryConteiner(props: propsInt) {
-  const { children, className, atributes, searchItem, onClick } = props;
+  const { children, className, atributes, searchItem } = props;
+
+  const { showCountryInfos } = useRootContext();
 
   return (
     <div
@@ -36,7 +37,7 @@ export default function CountryConteiner(props: propsInt) {
       "
       >
         <img
-          onClick={onClick?.bind(null, searchItem)}
+          onClick={showCountryInfos?.bind(null, searchItem.alpha2Code)}
           src={searchItem.flags.svg}
           alt=""
           className="w-full h-full cursor-pointer"
@@ -55,7 +56,7 @@ export default function CountryConteiner(props: propsInt) {
         >
           {searchItem.name ?? ""}
         </h2>
-        <ul className="md-font">
+        <ul className="text-[1.7rem]">
           <InfosLine
             label={"Population"}
             value={formatter.format(searchItem.population) + ""}

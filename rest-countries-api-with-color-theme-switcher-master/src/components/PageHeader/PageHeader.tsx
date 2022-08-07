@@ -19,6 +19,10 @@ export default function PageHeader(props: propsInt) {
       md-font
       flex
       justify-between
+      shadow
+
+      md:text-3xl
+      md:px-[50px]
       
     
     `}

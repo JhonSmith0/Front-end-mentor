@@ -1,44 +1,67 @@
+import axios from "axios";
 import { createContext, useReducer, useState } from "react";
 import { DispatcherAction, RootContextInterface } from "../../interface";
 
 const RootContext = createContext<RootContextInterface>({});
 
-function reducer(state: RootContextInterface, action: DispatcherAction) {
+function reducer(state: any, action: any) {
   const { type, arg } = action;
-
   switch (type) {
     case "search":
-      break;
+      return { ...state, searchQuery: arg, filterQuery: "all" };
     case "filter":
-      break;
-    case "open":
-      break;
-    case "goBack":
-      break;
-  }
+      return { ...state, filterQuery: arg };
+    case "showCountryList":
+      return { ...state, page: "list" };
+    case "showCountryInfos":
+      return { ...state, page: "infos", countryCode: arg };
 
-  return state;
+    default:
+      return state;
+  }
 }
 
 export function RootContextProvider(props: any) {
   const [state, dispatcher] = useReducer(reducer, {
+    countryCode: "",
     searchQuery: "",
-    searchItems: [],
-    filteredSearch: [],
     filterQuery: "",
-    currentCountryObject: undefined,
-    curretCountryCode: "",
+
+    // countryList: [],
+    // countryInfos: null,
+
     page: "list",
     search,
     filter,
-    open,
-    goBack,
+    showCountryList,
+    showCountryInfos,
   });
 
-  function search(searchQuery: string) {}
-  function filter(searchQuery: string) {}
-  function open(countryCode: string) {}
-  function goBack() {}
+  function search(query: string) {
+    dispatcher({
+      type: "search",
+      arg: query,
+    });
+  }
+  function filter(query: string) {
+    dispatcher({
+      type: "filter",
+      arg: query,
+    });
+  }
+
+  function showCountryList() {
+    dispatcher({
+      type: "showCountryList",
+      arg: "",
+    });
+  }
+  function showCountryInfos(countryCode: string) {
+    dispatcher({
+      type: "showCountryInfos",
+      arg: countryCode,
+    });
+  }
 
   return (
     <RootContext.Provider value={state}>{props.children}</RootContext.Provider>
