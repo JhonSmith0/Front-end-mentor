@@ -44,14 +44,14 @@ export default function CountryConteiner(props: propsInt) {
         <img
           onClick={showCountryInfos?.bind(null, searchItem.alpha2Code)}
           src={searchItem.flags.svg}
-          alt=""
+          alt={`${searchItem.name} Flag`}
           className="w-full h-full cursor-pointer"
         />
       </div>
       <div
         className="
       p-[2.4rem]
-      pb-[4.2rem]
+      py-[2.8rem]
       "
       >
         <h2
@@ -61,7 +61,7 @@ export default function CountryConteiner(props: propsInt) {
         >
           {searchItem.name ?? ""}
         </h2>
-        <ul className="text-[1.7rem]">
+        <ul className="text-[1.7rem] grid gap-5">
           <InfosLine
             label={"Population"}
             value={formatter.format(searchItem.population) + ""}

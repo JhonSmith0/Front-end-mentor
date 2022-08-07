@@ -39,7 +39,7 @@ export default function CountryInfos(props: propsInt) {
     <div className={`dark:text-white h-full lg-font leading-[2] mx-auto`}>
       <Button atributes={{ onClick: goBack }} className={`shadow-xl`}>
         <span className="mr-3 w-6 h-6">{arrowLeft}</span>
-        Home
+        Back
       </Button>
 
       {error
@@ -88,10 +88,14 @@ export default function CountryInfos(props: propsInt) {
               </div>
 
               <div className="mt-[4rem] md:m-0 md:col-span-2 ">
-                <h3 className="lg-font whitespace-nowrap mb-[1.4rem] font-semibold">
-                  Border Countries:
-                </h3>
-                <div className="flex flex-wrap">{handleBorders()}</div>
+                {borders?.length ? (
+                  <>
+                    <h3 className="lg-font whitespace-nowrap mb-[1.4rem] font-semibold">
+                      Border Countries:
+                    </h3>
+                    <div className="flex flex-wrap">{handleBorders()}</div>
+                  </>
+                ) : null}
               </div>
             </div>
           )}
