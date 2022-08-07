@@ -16,7 +16,7 @@ function reducer(
     case "filter":
       return { ...state, filterQuery: arg };
     case "showCountryList":
-      return { ...state, page: "list" };
+      return { ...state, page: "list", countryPages: [] };
     case "showCountryInfos":
       countryPages?.push(arg);
       return { ...state, page: "infos", countryCode: arg, countryPages };
