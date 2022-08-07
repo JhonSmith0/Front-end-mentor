@@ -9,20 +9,25 @@ interface propsInt {
 export default function PageHeader(props: propsInt) {
   const { children, className, atributes } = props;
   return (
-    <div
+    <header
       className={`
       py-12
-      px-8
-      text-white
+      dark:text-white
+      dark:bg-[#2b3743]
+      text-[#111517]
       font-bold
-      panel-color
       md-font
       flex
       justify-between
       shadow
 
       md:text-3xl
-      md:px-[50px]
+      
+      px-[3rem]
+      py-[1.5rem]
+      md:px-[5rem]
+      md:py-[2rem]
+
       
     
     `}
@@ -32,6 +37,6 @@ export default function PageHeader(props: propsInt) {
       <div>
         <DarkModeButton />
       </div>
-    </div>
+    </header>
   );
 }

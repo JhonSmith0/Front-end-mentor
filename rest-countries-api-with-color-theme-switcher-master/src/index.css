@@ -23,6 +23,10 @@ body {
   --dark-panel-color: #2b3743;
   --dark-bg-color: #202d36;
 
+  background: hsl(0, 0%, 98%);
+}
+
+.dark {
   background: var(--dark-bg-color);
 }
 
@@ -96,8 +100,8 @@ svg {
   }
 }
 
-@media screen and(max-width: 650px) {
+@media screen and (max-width: 1200px) {
   html {
-    font-size: 8px;
+    font-size: 70%;
   }
 }

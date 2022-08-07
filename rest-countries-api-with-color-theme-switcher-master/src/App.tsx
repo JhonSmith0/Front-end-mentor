@@ -17,16 +17,27 @@ function filterRegions(lista: SearchItem[] = [], region: string) {
 }
 
 function App() {
-  const { page } = useRootContext();
+  const { page, theme, showCountryList } = useRootContext();
+
+  useEffect(() => {
+    theme
+      ? document.body.classList.add(theme)
+      : document.body.classList.remove("dark");
+  }, [theme]);
 
   return (
     <>
-      <PageHeader>Where in the world?</PageHeader>
-      <main
+      <PageHeader>
+        <h1 className="lg:text-4xl cursor-pointer" onClick={showCountryList}>
+          Where in the world?
+        </h1>
+      </PageHeader>
+      <section
         className="py-[2.8rem] px-12 h-full relative
       
-      md:px-[50px]
-      
+      md:px-[5rem]
+      md:pt-[6rem]
+      text-[#111517];
       "
       >
         {page === "list" ? (
@@ -49,7 +60,7 @@ function App() {
         ) : (
           <CountryInfos />
         )}
-      </main>
+      </section>
     </>
   );
 }

@@ -4,6 +4,10 @@ module.exports = {
   theme: {
     extend: {},
   },
+
+  options: {
+    safelist: ["leading-1", "items-start"],
+  },
   darkMode: "class",
   plugins: [],
 };

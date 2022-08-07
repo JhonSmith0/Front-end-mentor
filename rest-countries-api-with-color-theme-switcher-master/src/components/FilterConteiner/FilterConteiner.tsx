@@ -23,26 +23,34 @@ export default function FilterConteiner(props: propsInt) {
   return (
     <div
       className={`
-    max-w-[20rem]
     text-white
+
+    w-max
+    lg:w-[25rem]
 
     md-font
     relative
     z-[100]
+    md:text-2xl
+    lg:text-3xl
     
     `}
     >
       <div
         className={`
-        panel-color
+        dark:bg-[#2B3743]
+        dark:text-white
+
+        text-[#111517]
 
         py-[1.4rem]
         px-[2.8rem]
         gap-[1.4rem]
 
-        md:w-[200px]
         md:px-[1.8rem]
-        
+        lg:gap-[3rem]
+
+        w-full
 
         rounded-[5px]
 
@@ -82,7 +90,13 @@ capitalize
       {visible && (
         <ul
           className="shadow
-        panel-color
+        
+          dark:bg-[#2B3743]
+          dark:text-white
+  
+          text-[#111517]
+          bg-white
+
         absolute
         w-full
         rounded-[5px]
@@ -92,6 +106,7 @@ capitalize
         md:px-[1.8rem]
         mt-[5px]
         leading-[2]
+        z-[100]
         
         "
         >

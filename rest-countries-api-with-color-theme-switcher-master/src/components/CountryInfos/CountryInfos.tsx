@@ -21,7 +21,11 @@ interface propsInt {
 export default function CountryInfos(props: propsInt) {
   const { children, className, atributes } = props;
 
-  const { countryCode = "", showCountryList } = useRootContext();
+  const {
+    countryCode = "",
+    showCountryList,
+    showCountryInfos,
+  } = useRootContext();
   const {
     data: Data,
     isFetching,
@@ -31,105 +35,70 @@ export default function CountryInfos(props: propsInt) {
   );
 
   const data = Data?.data?.[0] ? new CountryInfosModel(Data?.data?.[0]) : null;
-  const [borders, setBorders] = useState<any>();
-
-  useEffect(() => {
-    if (!data || borders) return;
-
-    data
-      .borders()
-      .then((e: any) => setBorders(e))
-      .catch((e) => setBorders("Error!"));
-  }, [data]);
+  const borders = data?.borders;
 
   function handleBorders() {
-    if (!borders) return;
-    if (typeof borders === "string") return borders;
-    return borders.map((e: any) => <Button key={e}>{e}</Button>);
+    return borders?.map((e: any) => (
+      <Button
+        className="md:px-4 m-1"
+        atributes={{ onClick: showCountryInfos?.bind(null, e) }}
+        key={e}
+      >
+        {e}
+      </Button>
+    ));
   }
 
   return (
-    <div
-      className={`
-    text-white
-    h-full
-    lg-font
-    leading-[2]
-    mx-auto
-
-    `}
-    >
-      <Button
-        atributes={{ onClick: showCountryList }}
-        className={`
-        shadow-xl
-
-      `}
-      >
-        <span
-          className="
-        mr-3
-        w-6
-        h-6
-        "
-        >
-          {arrowLeft}
-        </span>
-        Back
+    <div className={`dark:text-white h-full lg-font leading-[2] mx-auto`}>
+      <Button atributes={{ onClick: showCountryList }} className={`shadow-xl`}>
+        <span className="mr-3 w-6 h-6">{arrowLeft}</span>
+        Home
       </Button>
 
       {error
         ? "An Error Ocurred!"
         : data && (
             <div
-              className="
-
-       pb-[4rem]
-       grid
-       grid-cols-2
-
-
-       md:flex-row
-       md:justify-between
-       md:-between
-       "
+              style={{
+                gridTemplateColumns: "1fr auto",
+              }}
+              className="py-[4rem] flex gap-[4.2rem] flex-col 
+              md:grid
+              md:grid-cols-2
+              md:items-center
+              md:gap-x-8
+              md:gap-16
+              md:max-w-[80rem]
+              mx-auto
+              "
             >
-              <div
-                className="
-        mt-[6.4rem]
-        mb-[4.2rem]
-        w-full
-        aspect-video
-
-        md:w-max
-        md:h-full
-
-
-
-        "
-              >
+              <div className="h-max country-infos-img md:justify-self-start shadow-md ">
                 <img
                   src={data?.flags.svg}
-                  alt={""}
-                  className="
-            w-full
-            "
+                  alt={`${data?.name} Flag`}
+                  className="md:max-w-[32rem] dark:border-[#2B3743] border-black"
                 />
               </div>
 
-              <div className="md:w-max hidden">
-                <h2
-                  className="
-            text-[2.8rem]
-            font-bold
-        "
-                >
-                  {data?.name}
-                </h2>
+              <div className="justify-self-end">
+                <h2 className="text-[2.8rem] font-bold">{data?.name}</h2>
 
-                <div className="grid gap-[3rem] md:grid-cols-2">
+                <div className="flex flex-col gap-[4rem] country-infos-infos md:text-[1.5rem] md:flex-row">
                   <ul className="">
-                    <InfosLine label={"Native Name"} value={data.nativeName} />
+                    {data.nativeName.length >= 20 ? (
+                      <InfosLine
+                        label={"Native Name"}
+                        value={data.nativeName}
+                        Break={true}
+                      />
+                    ) : (
+                      <InfosLine
+                        label={"Native Name"}
+                        value={data.nativeName}
+                      />
+                    )}
+
                     <InfosLine label={"Population"} value={data.population} />
                     <InfosLine label={"Region"} value={data.region} />
                     <InfosLine label={"Sub region"} value={data.subregion} />
@@ -141,21 +110,13 @@ export default function CountryInfos(props: propsInt) {
                     <InfosLine label={"Languages"} value={data.languages} />
                   </ul>
                 </div>
+              </div>
 
-                <h3
-                  className="
-
-        lg-font
-        font-semibold
-        mt-[4rem]
-        mb-[1.4rem]
-        "
-                >
-                  Border Countries
+              <div className="mt-[4rem] md:m-0 md:col-span-2">
+                <h3 className="lg-font whitespace-nowrap mb-[1.4rem] font-semibold">
+                  Border Countries:
                 </h3>
-                <div className="border-countries flex flex-wrap gap-3">
-                  {handleBorders()}
-                </div>
+                <div className="flex flex-wrap">{handleBorders()}</div>
               </div>
             </div>
           )}

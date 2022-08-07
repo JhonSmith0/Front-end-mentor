@@ -63,12 +63,7 @@ export default class CountryInfosModel {
     return Object.values(this._languages ?? {}).join(" ");
   }
 
-  async borders() {
-    const lista = Object.values(this._borders).map((code) =>
-      axios.get(`https://restcountries.com/v3.1/alpha/${code}`)
-    );
-
-    const proms = await Promise.all<{ data: CountryInfosInterface[] }>(lista);
-    return proms.map(({ data: [data] }) => data.name.common);
+  get borders() {
+    return this._borders ?? [];
   }
 }

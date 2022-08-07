@@ -12,7 +12,7 @@ export default function SearchBar(props: propsInt) {
   const { children, className, atributes } = props;
 
   const input: MutableRefObject<any> = useRef(null);
-  const { search } = useRootContext();
+  const { search, theme } = useRootContext();
 
   return (
     <form
@@ -25,16 +25,22 @@ export default function SearchBar(props: propsInt) {
       <div
         className={`
 
-    panel-color
+    
     py-6
     px-12
 
 
     flex
     items-center
-    text-white
+    dark:text-white
+    dark:bg-[#2B3743]
+
+    text-black 
+    bg-white
+    
 
     md-font
+    md:text-3xl
     shadow
 
 
@@ -51,6 +57,8 @@ export default function SearchBar(props: propsInt) {
       w-7
 
       cursor-pointer
+      dark:text-white
+      text-[#2B3743]
 
       `}
         >
@@ -64,6 +72,7 @@ export default function SearchBar(props: propsInt) {
         bg-transparent
 
         outline-none
+        w-full
         border-0
         
         `}

@@ -21,7 +21,7 @@ export default function Button(props: propsInt) {
     cursor-pointer
     rounded-[4px]
 
-    panel-color ${className}`}
+    dark:bg-[#2b3743] ${className}`}
       {...atributes}
     >
       {children}

@@ -22,13 +22,19 @@ export default function CountryConteiner(props: propsInt) {
       className="
     country-conteiner
     w-full
-    max-w-[320px]
+    max-w-[30rem]
     h-max
     rounded-[5px]
     overflow-hidden
-    panel-color
-    text-white
-    shadow"
+    dark:bg-[#2b3743]
+    dark:text-white
+
+    bg-white
+    
+
+    shadow
+    
+    "
     >
       <div
         className="

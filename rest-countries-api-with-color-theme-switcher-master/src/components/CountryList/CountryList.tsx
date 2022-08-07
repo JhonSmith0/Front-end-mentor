@@ -29,6 +29,7 @@ export default function CountryList(props: propsInt) {
   } = useRootContext();
 
   function getTodos(search: string) {
+    if (!search) return;
     return axios.get("https://restcountries.com/v2/name/" + search);
   }
 
@@ -44,6 +45,7 @@ export default function CountryList(props: propsInt) {
     h-max
     py-[3.2rem]
     md:px-[3.2rem]
+    md:py-[8rem]
 
 
 
