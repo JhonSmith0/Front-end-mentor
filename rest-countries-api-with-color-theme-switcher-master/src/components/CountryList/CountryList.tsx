@@ -1,11 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
 import useRootContext from "../../data/hooks/useRootContext";
 import { SearchItem } from "../../interface";
 import CountryConteiner from "../CountryConteiner/CountryConteiner";
-import { searchIcon } from "../icons";
 import { useQuery } from "@tanstack/react-query";
-import axios, { Axios } from "axios";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import axios from "axios";
 
 interface propsInt {
   children?: any;
@@ -20,20 +17,14 @@ function filter(region: string, lista: SearchItem[]) {
 }
 
 export default function CountryList(props: propsInt) {
-  const { children, className, atributes } = props;
-
-  const {
-    searchQuery = "",
-    countryList,
-    filterQuery = "all",
-  } = useRootContext();
+  const { searchQuery = "", filterQuery = "all" } = useRootContext();
 
   function getTodos(search: string) {
     if (!search) return;
     return axios.get("https://restcountries.com/v2/name/" + search);
   }
 
-  const { data, isFetching, isError } = useQuery(
+  const { data } = useQuery(
     [`search?=${searchQuery.toLowerCase()}`],
     getTodos.bind(null, searchQuery)
   );

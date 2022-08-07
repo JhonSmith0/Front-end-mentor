@@ -1,12 +1,8 @@
-import { getNameOfDeclaration } from "typescript";
-import { CountryInfosInterface, SearchItem } from "../../interface";
 import Button from "../Button/Button";
-import { formatter } from "../CountryConteiner/CountryConteiner";
 import { arrowLeft } from "../icons";
 import InfosLine from "../InfosList/InfosLine";
 
 import CountryInfosModel from "../../model/CountryInfosModel";
-import { useEffect, useState } from "react";
 import useRootContext from "../../data/hooks/useRootContext";
 
 import { useQuery } from "@tanstack/react-query";
@@ -19,19 +15,8 @@ interface propsInt {
 }
 
 export default function CountryInfos(props: propsInt) {
-  const { children, className, atributes } = props;
-
-  const {
-    countryCode = "",
-    showCountryList,
-    showCountryInfos,
-    goBack,
-  } = useRootContext();
-  const {
-    data: Data,
-    isFetching,
-    error,
-  } = useQuery([`infos?=${countryCode}`], () =>
+  const { countryCode = "", showCountryInfos, goBack } = useRootContext();
+  const { data: Data, error } = useQuery([`infos?=${countryCode}`], () =>
     axios.get(`https://restcountries.com/v3.1/alpha/${countryCode}`)
   );
 
@@ -87,18 +72,7 @@ export default function CountryInfos(props: propsInt) {
 
                 <div className="flex flex-col gap-[4rem] country-infos-infos md:text-[1.5rem] md:flex-row">
                   <ul className="grid gap-y-6 content-start">
-                    {data.nativeName.length >= 20 ? (
-                      <InfosLine
-                        label={"Native Name"}
-                        value={data.nativeName}
-                        Break={true}
-                      />
-                    ) : (
-                      <InfosLine
-                        label={"Native Name"}
-                        value={data.nativeName}
-                      />
-                    )}
+                    <InfosLine label={"Native Name"} value={data.nativeName} />
 
                     <InfosLine label={"Population"} value={data.population} />
                     <InfosLine label={"Region"} value={data.region} />

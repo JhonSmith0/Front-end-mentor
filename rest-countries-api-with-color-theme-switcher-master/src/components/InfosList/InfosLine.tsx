@@ -4,10 +4,8 @@ export default function InfoLine(props: {
   liClassName?: string;
   labelClassName?: string;
   valueClassName?: string;
-  Break?: boolean;
 }) {
-  const { liClassName, label, labelClassName, valueClassName, value, Break } =
-    props;
+  const { liClassName, label, labelClassName, value } = props;
 
   return (
     <li

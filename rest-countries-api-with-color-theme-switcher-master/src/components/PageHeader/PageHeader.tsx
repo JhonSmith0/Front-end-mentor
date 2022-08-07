@@ -7,11 +7,10 @@ interface propsInt {
 }
 
 export default function PageHeader(props: propsInt) {
-  const { children, className, atributes } = props;
+  const { children, atributes } = props;
   return (
     <header
       className={`
-      py-12
       dark:text-white
       dark:bg-[#2b3743]
       text-[#111517]

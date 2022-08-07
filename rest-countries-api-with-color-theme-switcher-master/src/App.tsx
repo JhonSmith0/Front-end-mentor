@@ -1,20 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
-import logo from "./logo.svg";
+import { useEffect } from "react";
 import PageHeader from "./components/PageHeader/PageHeader";
 import SearchBar from "./components/SearchBar/SearchBar";
 import FilterConteiner from "./components/FilterConteiner/FilterConteiner";
 import CountryList from "./components/CountryList/CountryList";
 import CountryInfos from "./components/CountryInfos/CountryInfos";
-import { SearchItem } from "./interface";
 import useRootContext from "./data/hooks/useRootContext";
-
-function filterRegions(lista: SearchItem[] = [], region: string) {
-  if (region.toLowerCase() === "all") return lista;
-
-  return lista?.filter(
-    (obj) => obj.region.toLowerCase() === region.toLowerCase()
-  );
-}
 
 function App() {
   const { page, theme, showCountryList } = useRootContext();

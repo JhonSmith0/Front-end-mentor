@@ -1,5 +1,5 @@
 import useRootContext from "../../data/hooks/useRootContext";
-import { moonOutline, moonSolid } from "../icons";
+import { moonSolid } from "../icons";
 
 interface propsInt {
   children?: any;
@@ -8,7 +8,7 @@ interface propsInt {
 }
 
 export default function DarkModeButton(props: propsInt) {
-  const { children, className, atributes } = props;
+  const { atributes } = props;
   const { toggleTheme, theme } = useRootContext();
   return (
     <div

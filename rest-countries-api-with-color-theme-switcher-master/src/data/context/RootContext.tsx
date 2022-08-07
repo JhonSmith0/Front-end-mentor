@@ -1,12 +1,5 @@
-import axios from "axios";
-import {
-  createContext,
-  Reducer,
-  useLayoutEffect,
-  useReducer,
-  useState,
-} from "react";
-import { DispatcherAction, RootContextInterface } from "../../interface";
+import { createContext, Reducer, useReducer } from "react";
+import { RootContextInterface } from "../../interface";
 
 const RootContext = createContext<RootContextInterface>({});
 

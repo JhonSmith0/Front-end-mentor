@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, MutableRefObject, useRef } from "react";
+import { MutableRefObject, useRef } from "react";
 import useRootContext from "../../data/hooks/useRootContext";
 import { searchIcon } from "../icons";
 
@@ -9,10 +9,10 @@ interface propsInt {
 }
 
 export default function SearchBar(props: propsInt) {
-  const { children, className, atributes } = props;
+  const { className, atributes } = props;
 
   const input: MutableRefObject<any> = useRef(null);
-  const { search, theme } = useRootContext();
+  const { search } = useRootContext();
 
   return (
     <form

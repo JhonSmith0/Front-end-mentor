@@ -1,5 +1,3 @@
-import axios from "axios";
-import { SearchItem } from "../interface";
 import { formatter } from "../components/CountryConteiner/CountryConteiner";
 import { CountryInfosInterface } from "../interface";
 

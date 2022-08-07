@@ -1,6 +1,5 @@
 import useRootContext from "../../data/hooks/useRootContext";
 import { SearchItem } from "../../interface";
-import { searchIcon } from "../icons";
 import InfosLine from "../InfosList/InfosLine";
 
 interface propsInt {
@@ -13,7 +12,7 @@ interface propsInt {
 export const formatter = Intl.NumberFormat(window.navigator.language);
 
 export default function CountryConteiner(props: propsInt) {
-  const { children, className, atributes, searchItem } = props;
+  const { searchItem } = props;
 
   const { showCountryInfos } = useRootContext();
 

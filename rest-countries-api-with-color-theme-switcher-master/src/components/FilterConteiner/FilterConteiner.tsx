@@ -1,17 +1,15 @@
 import { useState } from "react";
 import useRootContext from "../../data/hooks/useRootContext";
-import { chevDown, chevUp, searchIcon } from "../icons";
+import { chevDown, chevUp } from "../icons";
 
 interface propsInt {
   children?: any;
   className?: string;
   atributes?: object;
-
-  onClick?(region: string): any;
 }
 
 export default function FilterConteiner(props: propsInt) {
-  const { children, className, atributes, onClick } = props;
+  const { atributes } = props;
 
   const [visible, setVisible] = useState(false);
   const { filter, filterQuery } = useRootContext();
