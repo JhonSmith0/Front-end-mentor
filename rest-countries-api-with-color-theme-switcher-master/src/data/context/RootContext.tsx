@@ -10,8 +10,13 @@ import { DispatcherAction, RootContextInterface } from "../../interface";
 
 const RootContext = createContext<RootContextInterface>({});
 
-function reducer(state: any, action: any) {
+function reducer(
+  state: RootContextInterface,
+  action: { type: string; arg?: any }
+) {
   const { type, arg } = action;
+  const { countryPages } = state;
+
   switch (type) {
     case "search":
       return { ...state, searchQuery: arg, filterQuery: "all" };
@@ -20,12 +25,19 @@ function reducer(state: any, action: any) {
     case "showCountryList":
       return { ...state, page: "list" };
     case "showCountryInfos":
-      return { ...state, page: "infos", countryCode: arg };
+      countryPages?.push(arg);
+      return { ...state, page: "infos", countryCode: arg, countryPages };
     case "toggleTheme":
       const theme = state.theme === "dark" ? "" : "dark";
       window.localStorage.setItem("theme", theme);
 
       return { ...state, theme };
+    case "goBack":
+      countryPages?.pop();
+      if (countryPages?.length === 0) {
+        return { ...state, countryPages, page: "list" };
+      }
+      return { ...state, countryPages, countryCode: countryPages?.at(-1) };
 
     default:
       return state;
@@ -48,6 +60,9 @@ export function RootContextProvider(props: any) {
       showCountryList,
       showCountryInfos,
       toggleTheme,
+
+      goBack,
+      countryPages: [],
     }
   );
 
@@ -81,6 +96,10 @@ export function RootContextProvider(props: any) {
     dispatcher({
       type: "toggleTheme",
     });
+  }
+
+  function goBack() {
+    dispatcher({ type: "goBack" });
   }
 
   return (

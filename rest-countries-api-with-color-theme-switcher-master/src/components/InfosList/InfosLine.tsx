@@ -11,20 +11,12 @@ export default function InfoLine(props: {
 
   return (
     <li
-      className={`flex items-end gap-2 ${
-        Break
-          ? "flex-col gap-0 mb-2 items-start leading-1"
-          : "whitespace-nowrap"
-      } ${liClassName}`}
+      className={`flex items-end gap-2 ${liClassName} flex-wrap  leading-[3]`}
     >
-      <span className={`font-semibold ${labelClassName ?? ""}`}>{label}:</span>
-      <span
-        className={`font-light ${Break ? "leading-1" : ""} ${
-          valueClassName ?? ""
-        }`}
-      >
-        {value}
+      <span className={`font-semibold ${labelClassName ?? ""} leading-[1]`}>
+        {label}:
       </span>
+      <span className={`font-light leading-[1]`}>{value}</span>
     </li>
   );
 }

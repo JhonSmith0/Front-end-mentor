@@ -37,8 +37,10 @@ export interface RootContextInterface {
   searchQuery?: string;
   filterQuery?: string;
 
-  page?: "list" | "infos";
+  page?: "list" | "infos" | string;
   theme?: "dark" | string;
+
+  countryPages?: string[];
 
   countryList?: SearchItem[];
   countryInfos?: CountryInfosInterface;
@@ -48,6 +50,7 @@ export interface RootContextInterface {
   showCountryList?(): any;
   showCountryInfos?(countryCode: string): any;
   toggleTheme?(): any;
+  goBack?(): any;
 }
 
 export interface DispatcherAction {

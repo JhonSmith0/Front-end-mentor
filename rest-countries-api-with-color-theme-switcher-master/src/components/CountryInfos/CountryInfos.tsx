@@ -25,6 +25,7 @@ export default function CountryInfos(props: propsInt) {
     countryCode = "",
     showCountryList,
     showCountryInfos,
+    goBack,
   } = useRootContext();
   const {
     data: Data,
@@ -51,7 +52,7 @@ export default function CountryInfos(props: propsInt) {
 
   return (
     <div className={`dark:text-white h-full lg-font leading-[2] mx-auto`}>
-      <Button atributes={{ onClick: showCountryList }} className={`shadow-xl`}>
+      <Button atributes={{ onClick: goBack }} className={`shadow-xl`}>
         <span className="mr-3 w-6 h-6">{arrowLeft}</span>
         Home
       </Button>
@@ -82,10 +83,10 @@ export default function CountryInfos(props: propsInt) {
               </div>
 
               <div className="justify-self-end">
-                <h2 className="text-[2.8rem] font-bold">{data?.name}</h2>
+                <h2 className="text-[2.8rem] font-bold mb-4">{data?.name}</h2>
 
                 <div className="flex flex-col gap-[4rem] country-infos-infos md:text-[1.5rem] md:flex-row">
-                  <ul className="">
+                  <ul className="grid gap-y-6 content-start">
                     {data.nativeName.length >= 20 ? (
                       <InfosLine
                         label={"Native Name"}
@@ -104,7 +105,7 @@ export default function CountryInfos(props: propsInt) {
                     <InfosLine label={"Sub region"} value={data.subregion} />
                     <InfosLine label={"Capital"} value={data.capital} />
                   </ul>
-                  <ul className="">
+                  <ul className="grid gap-y-6 content-start">
                     <InfosLine label={"Top Level Domain"} value={data.tld} />
                     <InfosLine label={"Currencies"} value={data.currencies} />
                     <InfosLine label={"Languages"} value={data.languages} />
@@ -112,7 +113,7 @@ export default function CountryInfos(props: propsInt) {
                 </div>
               </div>
 
-              <div className="mt-[4rem] md:m-0 md:col-span-2">
+              <div className="mt-[4rem] md:m-0 md:col-span-2 ">
                 <h3 className="lg-font whitespace-nowrap mb-[1.4rem] font-semibold">
                   Border Countries:
                 </h3>

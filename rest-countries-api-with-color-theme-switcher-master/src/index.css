@@ -74,32 +74,6 @@ svg {
   height: 100%;
 }
 
-/* Loading animation */
-.pulseLoader {
-  width: 10rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background-color: white;
-  outline: 1px solid transparent;
-  animation: pulseanim 1s ease-in-out infinite;
-
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes pulseanim {
-  0% {
-    transform: scale(0);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-
 @media screen and (max-width: 1200px) {
   html {
     font-size: 70%;
