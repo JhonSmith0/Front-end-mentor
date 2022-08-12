@@ -1,0 +1,33 @@
+model:
+
+todo:
+    id
+    name
+    status: active | completed
+
+    toggleStatus() {
+
+    }
+
+
+//
+todoList: {
+    data: todoList[]
+
+addToDo(todo: todo) {
+    return new object 
+}
+
+removeTodo(todo: todo) {
+    return new object
+}
+
+updateTodo(todoAntiga, nova) {
+    return new object
+}
+
+clearCompleted() {
+    return new object
+}
+
+}
